@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiz: Hvordan skrive en CV</title>
+<style>
+:root{--bg:#F3F7FB;--card:#FFFFFF;--ink:#17324D;--mute:#5B6F84;--line:#D5E0EB;--brand:#1F5A8C;--sun:#F5B83D;--ok:#1E8A62;--okbg:#DDF3EA;--bad:#C93C3C;--badbg:#FBE3E1;--hint:#FFF4D6;--hintink:#6B4E00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B28;--card:#182A3C;--ink:#EAF1F8;--mute:#9DB1C5;--line:#2C4258;--brand:#6FB1E8;--ok:#5ED0A0;--okbg:#17402F;--bad:#FF8A84;--badbg:#472122;--hint:#3F3513;--hintink:#F5D88A}}
+:root[data-theme="dark"]{--bg:#0F1B28;--card:#182A3C;--ink:#EAF1F8;--mute:#9DB1C5;--line:#2C4258;--brand:#6FB1E8;--ok:#5ED0A0;--okbg:#17402F;--bad:#FF8A84;--badbg:#472122;--hint:#3F3513;--hintink:#F5D88A}
+html{color-scheme:light dark;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.5 "Nunito","Segoe UI",Arial,sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.4rem;margin:0 0 4px;color:var(--brand)}
+.sub{color:var(--mute);margin:0 0 16px;font-size:.95rem}
+.dots{display:flex;gap:4px;margin-bottom:16px}
+.dot{flex:1;height:8px;border-radius:4px;background:var(--line)}
+.dot.now{background:var(--sun)}.dot.ok{background:var(--ok)}.dot.bad{background:var(--bad)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:20px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--mute);font-size:.9rem}
+.badge{width:36px;height:36px;border-radius:50%;background:var(--brand);color:var(--card);display:grid;place-items:center;font-weight:800}
+.q{font-size:1.25rem;font-weight:800;margin:0 0 16px}
+.opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--brand)}
+.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.opt.ok{background:var(--okbg);border-color:var(--ok);font-weight:700}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{border-radius:12px;padding:12px 14px;margin:4px 0 14px}
+.fb.ok{background:var(--okbg);color:var(--ok)}.fb.bad{background:var(--badbg);color:var(--bad)}
+.fb b{display:block}.fb span{color:var(--ink)}
+.hintbox{background:var(--hint);color:var(--hintink);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:.95rem}
+.btn{font:inherit;font-weight:800;border:0;border-radius:12px;padding:12px 20px;cursor:pointer;background:var(--brand);color:var(--card)}
+.btn.alt{background:var(--sun);color:#3A2A00}
+.link{background:none;border:0;font:inherit;color:var(--brand);text-decoration:underline;cursor:pointer;padding:0;margin-bottom:12px;display:block}
+.res{text-align:center}.res .big{font-size:3rem;font-weight:800;color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Quiz: Hvordan skrive en CV</h1>
+<p class="sub">Les spørsmålet. Trykk på riktig svar.</p>
+<div class="dots" id="dots"></div>
+<div class="card" id="card"></div>
+</div>
+<script>
+var Q=[
+["A","Hvordan må de som søker på jobber være?",["Aktive","Stille","Raske"],0,"Teksten sier: «De som søker på jobber må være aktive.»","Se første avsnitt i tekst A."],
+["A","Hva kan være viktig for å få jobben?",["En stor bil","Mange venner","En god CV"],2,"En god CV kan være viktig for å få jobben.","Se siste setning i tekst A."],
+["B","Hva er en CV?",["En kort oversikt over det du har gjort i livet ditt","Et brev til en venn","En lang bok om familien din"],0,"En CV er en kort oversikt over det du har gjort i livet ditt.","Se første avsnitt i tekst B."],
+["B","Hva sender du sammen med søknaden når du søker jobb?",["Et bilde av familien","En CV","En gave"],1,"Du sender alltid en CV sammen med søknaden.",""],
+["B","Hva skal være med i en CV?",["Maten du liker","Utdanning, arbeidserfaring og kurs","Navn på alle vennene dine"],1,"Utdanning, arbeidserfaring og kurs skal være med i en CV.",""],
+["C","Hva skal en CV starte med?",["Kurs","Interesser","Personalia"],2,"En CV skal starte med personalia: navn, fødselsdato, adresse, mobilnummer og e-post.","Navn, adresse, mobil og e-post."],
+["C","Hva er overskriften i CV-en?",["Navnet ditt","Adressen din","Jobben din"],0,"Navnet ditt er overskriften i CV-en.",""],
+["D","Hva slags bilde skal du velge til CV-en?",["Et bilde med mange mennesker","Et bilde av deg selv med rolig bakgrunn","Et bilde av hele kroppen din"],1,"Velg et bilde av deg selv med rolig bakgrunn, gjerne en hvit vegg. Ta bildet fra skuldrene og opp.",""],
+["D","Hvordan skal du kle deg på bildet?",["Som du ville gjort til et jobbintervju","Som du gjør på stranden","Som du gjør hjemme på sofaen"],0,"Kle deg slik du ville ha gjort til et jobbintervju.",""],
+["E","Hva betyr nøkkelkvalifikasjoner?",["Du forteller hva du ikke liker","Du forteller hvor du bor","Du forteller om noe du er spesielt god på"],2,"Nøkkelkvalifikasjoner betyr at du forteller om noe du er spesielt god på.",""],
+["E","Hvor i CV-en skal nøkkelkvalifikasjonene stå?",["Helt til slutt","Tidlig, etter personalia","Under interesser"],1,"Arbeidsgivere bruker liten tid på å lese CV-en. Derfor skal nøkkelkvalifikasjonene stå tidlig, etter personalia.",""],
+["F","Hvilken jobb skal du skrive først under arbeidserfaring?",["Den eldste jobben","Den beste jobben","Den nyeste jobben"],2,"Start med den nyeste jobben.",""],
+["F","Skal du skrive om jobber fra hjemlandet ditt?",["Ja","Nei","Bare hvis jobben var lang"],0,"Husk å skrive om jobber fra hjemlandet ditt også.",""],
+["G","Hvilken utdanning skal du skrive først?",["Den nyeste utdanningen","Den eldste utdanningen","Ingen utdanning"],0,"Start med den nyeste utdanningen. Husk utdanning fra hjemlandet ditt.",""],
+["H","Hva kan du skrive under «Kurs»?",["Hvor du handler mat","Kurs du har deltatt på","Hva du skal gjøre i morgen"],1,"I CV-en kan du ta med kurs du har deltatt på.",""],
+["H","Hva er viktig å skrive i CV-en om språk?",["Hvilke språk du kan","Hvilke språk du ikke kan","Hvilke språk vennene dine kan"],0,"Det er viktig å skrive hvilke språk du kan.",""],
+["I","Hva kan du skrive under «Interesser»?",["Hvor mye penger du tjener","Hva du spiser til middag","Hva du gjør på fritiden, for eksempel frivillig arbeid"],2,"Noen skriver litt om hva de gjør på fritiden. Frivillig arbeid er fint å ha med.",""],
+["J","Hva er en referanse?",["En ny jobb","Et kurs","En person som kan fortelle hvordan du er å jobbe med"],2,"En referanse er en person som kan fortelle hvordan du er å jobbe med.",""],
+["J","Hva betyr «Referanser gis på forespørsel»?",["Du har ingen referanser","Du gir navn og telefonnummer hvis noen spør","Du må betale for referanser"],1,"Du gir navn og telefonnummer til referanser hvis noen spør.",""],
+["K","Hvor lang bør en CV være?",["Fem sider","Ti sider","Én side"],2,"En CV bør ikke være for lang. Prøv å skrive den på én side.",""]
+];
+var i=0,score=0,res=[],answered=false;
+var card=document.getElementById("card"),dots=document.getElementById("dots");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function drawDots(){dots.innerHTML=Q.map(function(_,k){var c=res[k]===undefined?(k===i?"now":""):(res[k]?"ok":"bad");return '<div class="dot '+c+'"></div>'}).join("")}
+function show(){
+ answered=false;drawDots();var q=Q[i];
+ var h='<div class="top"><div class="badge">'+q[0]+'</div><div>Spørsmål '+(i+1)+' av '+Q.length+'</div></div><p class="q">'+esc(q[1])+'</p>';
+ if(q[5])h+='<button class="link" id="hb">Vis hint</button><div id="hint"></div>';
+ h+='<div id="opts">'+q[2].map(function(o,k){return '<button class="opt" data-k="'+k+'">'+esc(o)+'</button>'}).join("")+'</div><div id="out"></div>';
+ card.innerHTML=h;
+ var hb=document.getElementById("hb");
+ if(hb)hb.onclick=function(){document.getElementById("hint").innerHTML='<div class="hintbox">'+esc(q[5])+'</div>';hb.remove()};
+ Array.prototype.forEach.call(card.querySelectorAll(".opt"),function(b){b.onclick=function(){pick(+b.dataset.k)}});
+}
+function pick(k){
+ if(answered)return;answered=true;var q=Q[i],good=k===q[3];
+ res[i]=good;if(good)score++;drawDots();
+ var bs=card.querySelectorAll(".opt");
+ Array.prototype.forEach.call(bs,function(b,n){b.disabled=true;if(n===q[3])b.classList.add("ok");else if(n===k)b.classList.add("bad")});
+ var last=i===Q.length-1;
+ document.getElementById("out").innerHTML='<div class="fb '+(good?"ok":"bad")+'"><b>'+(good?"Riktig!":"Ikke helt.")+'</b><span>'+esc(q[4])+'</span></div><button class="btn" id="nx">'+(last?"Se resultat":"Neste spørsmål")+'</button>';
+ var nx=document.getElementById("nx");nx.focus();
+ nx.onclick=function(){if(last)done();else{i++;show()}};
+}
+function done(){
+ drawDots();var p=score/Q.length;
+ var msg=p>=.9?"Veldig bra!":p>=.7?"Bra jobba!":p>=.5?"Du er på god vei.":"Les tekstene en gang til og prøv igjen.";
+ card.innerHTML='<div class="res"><div class="big">'+score+' av '+Q.length+'</div><p class="q">'+msg+'</p><button class="btn alt" id="rs">Prøv på nytt</button></div>';
+ document.getElementById("rs").onclick=function(){i=0;score=0;res=[];show()};
+}
+show();
+</script>
+</body>
+</html>
